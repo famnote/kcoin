@@ -29,7 +29,7 @@ CTxMemPool mempool;
 unsigned int nTransactionsUpdated = 0;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
-uint256 hashGenesisBlock("0xc3d5c5d23f647a152298b72304cdb3d1f51d37621a6c20386ede48126ab5045a");
+uint256 hashGenesisBlock("0x4b6561a5f6ea9f692d72a28415b7e778c10dbbe4014a0cf91bdca4e47bf508b9");
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // starting difficulty is 1 / 2^12
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
@@ -828,7 +828,10 @@ uint256 static GetOrphanRoot(const CBlock* pblock)
 
 int64 static GetBlockValue(int nHeight, int64 nFees)
 {
-    int64 nSubsidy = 1 * COIN;
+    //int64 nSubsidy = 1 * COIN;
+    int64 nSubsidy = 7880000000 * COIN;
+
+    if (nHeight > 1) nSubsidy = 0;
 
     return nSubsidy + nFees;
 }
@@ -2014,9 +2017,9 @@ bool LoadBlockIndex(bool fAllowNew)
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1439679750; //epochtime
+        block.nTime    = 1439685474; //epochtime
         block.nBits    = 0x1e0ffff0;
-        block.nNonce   = 1876513;
+        block.nNonce   = 2271525;
 
         if (fTestNet)
         {
